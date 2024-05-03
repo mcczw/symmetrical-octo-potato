@@ -1,8 +1,8 @@
 {
   "name": "docker_web_app",
   "version": "1.0.0",
-  "description": "Node.js on Docker",
-  "author": "Tulio Llosa <tllos1@uis.edu>",
+  "description": "Nodejs on Docker",
+  "author": "Maia Czwornog",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

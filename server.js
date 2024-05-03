@@ -55,7 +55,7 @@ var User = require('./models/user');
 var Blog = require('./models/blogs');
 
 // Connect to MongoDB on VM
-mongoose.connect('mongodb://10.92.128.43:27017/blogger', { useNewUrlParser: true });
+mongoose.connect('mongodb://IP:PORT/DBNAME', { useNewUrlParser: true });
 const db = mongoose.connection;
 
 //API ROUTES
