@@ -1,0 +1,22 @@
+{
+  "name": "docker_web_app",
+  "version": "1.0.0",
+  "description": "Node.js on Docker",
+  "author": "Tulio Llosa <tllos1@uis.edu>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "app-root-path": "^2.1.0",
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.1",
+    "express-validator": "^5.3.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.3.1",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.4",
+    "winston": "^3.1.0"
+  }
+}

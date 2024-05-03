@@ -1,0 +1,36 @@
+<% include partials/header %>
+
+<h1>Edit Comment:</h1>
+<% if(errors != undefined){ %>
+<ul>
+<% errors.forEach(function(error){ %>
+<li style="color:red"><%= error.msg %></li>
+<% }) %>
+</ul>
+<% } %>
+
+<form method="POST" action="/blogs/addComment/<%= blog. _id %>">
+<input type="hidden" name="_method" value="PUT" />
+<b><%= blog.title %></b> <br>By: <%= blog.author.name %><br>(<%= blog.body %>) <br> 
+
+<br>
+<label>New Comment:</label><br>
+<label>Comment:</label><br>
+<textarea name="comment" ></textarea><br>
+
+<label>Comments:</label><br>
+<% blog.comments.forEach(function(comment){ %>
+    <ol><b>Comment:</b><%= comment.comment %><br><b>Created at:</b><%= comment.created_at %></ol>
+<% }) %>
+    
+
+
+
+
+<br>
+<input type="submit" value="Add Comment">
+</form>
+
+
+
+<% include partials/footer %>

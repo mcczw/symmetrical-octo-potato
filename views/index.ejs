@@ -1,0 +1,116 @@
+<% include partials/header %>
+
+<% if(errors != undefined){ %>
+    <ul>
+    <% errors.forEach(function(error){ %>
+    <li style="color:red"><%= error.msg %></li>
+    <% }) %>
+    </ul>
+    <% } %>
+<style>
+    
+    .container {
+        display: flex;
+        height: 300px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+
+        
+        border: 2px solid #13f707;
+        border-radius: 5px;
+        background-color: #3caf83;
+    }
+
+    .userBox {
+        width: 30%;
+        
+    }
+
+    .blogBox {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .column {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+    
+</style>
+
+
+<div class="container">
+
+    <form class="userBox" method="POST" action="/users/add">
+        <h1>Add User:</h1>
+        <label>Name:</label><br>
+        <input type="text" name="name"><br>
+        <label>Email:</label><br>
+        <input type="text" name="email"><br>
+        <br>
+        <input type="submit" value="Submit" name="adduser">
+    </form>
+    
+    <form class="blogBox" method="POST" action="/blogs/add">
+        <div class="column">        
+            <h1>Add Blog:</h1>     
+
+            <label>Title:</label><br>
+            <input type="text" name="title"><br>
+            <label>Body:</label><br>
+            <input type="text" name="body"><br>
+            <label>Slug:</label><br>
+            <input type="text" name="slug"><br>     
+        </div>
+
+        <div class="column">
+            <h1>&nbsp</h1>
+            <label>Author:</label><br>      
+
+            <select name="author" id="author">
+                <% users.forEach(function(user){ %>
+                    <option value="<%= user.id %>"><%= user.name %></option>
+                <% }) %>
+            </select>
+            
+            <label>Category:</label><br>
+            <input type="text" name="category"><br>
+            <br>
+            <input type="submit" value="Submit" name="addblog">
+        </div>
+    </form>
+</div>
+
+
+<hr>
+<h1>Users:</h1>
+<ul>
+<% users.forEach(function(user){ %>
+<li><%= user.name %> (<%= user.email %>) - <a href='/users/edit/<%= user._id %>'>Edit</a>&nbsp;<form method="post" action="/users/delete/<%= user._id %>"><input type="submit" name="delete" value='Delete' onClick="return confirm('Are you sure you want to delete?')" /><input type="hidden" name="_method" value="DELETE" /></form>
+<% }) %>
+</ul>
+
+
+<hr>
+<h1>Blogs:</h1>
+<ul>
+<% blogs.forEach(function(blog){ %>
+<li><b><%= blog.title %></b> <br>By: <%= blog.author.name %><br>(<%= blog.body %>) <br> 
+    &nbsp;<a href='/blogs/edit/<%= blog._id %>'>Edit</a> &nbsp;
+    <a href='/blogs/addComment/<%= blog._id %>'>Add comment</a>
+   
+    <form method="post" action="/blogs/delete/<%= blog._id %>">
+    <input type="submit" name="delete" value='Delete' onClick="return confirm('Are you sure you want to delete?')" /><input type="hidden" name="_method" value="DELETE" /></form>
+   
+    <% blog.comments.forEach(function(comment){ %>
+        <ol><b>Comment:</b><%= comment.comment %><br><b>Created at:</b><%= comment.created_at %></ol>
+    <% }) %>
+    
+            
+       <br>
+<% }) %>
+</ul>
+
+<% include partials/footer %>
